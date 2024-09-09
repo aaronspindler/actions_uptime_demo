@@ -1,0 +1,29 @@
+name: 50/50 Chance Action
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '*/5 * * * *'  # Run every 5 minutes
+
+jobs:
+  random-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run command with 50% chance of failure
+        run: |
+          echo "This step has a 50% chance of failing"
+          if [ $((RANDOM % 2)) -eq 0 ]; then
+            echo "Success!"
+            exit 0
+          else
+            echo "Failure!"
+            exit 1
+          fi
