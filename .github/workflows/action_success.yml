@@ -1,1 +1,21 @@
+name: Always Succeed Action
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  always-succeed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run succeeding command
+        run: |
+          echo "This step will always succeed"
+          exit 0
