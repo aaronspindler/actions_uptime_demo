@@ -1,0 +1,23 @@
+
+
+name: Always Fail Action
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  always-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run failing command
+        run: |
+          echo "This step will always fail"
+          exit 1
