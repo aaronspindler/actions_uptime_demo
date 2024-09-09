@@ -9,6 +9,9 @@ on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: '*/5 * * * *'  # Run every 5 minutes
+
 
 jobs:
   always-fail:
